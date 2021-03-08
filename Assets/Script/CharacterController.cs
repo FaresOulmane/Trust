@@ -19,10 +19,10 @@ public class CharacterController : MonoBehaviour
       private bool canMove;
       private bool isMoving;
       [SerializeField] private GameObject freeLookCam;
-       private Animator animator;
+       // private Animator animator;
       private void Awake()
       {
-          animator = GetComponent<Animator>();
+          // animator = GetComponent<Animator>();
           canMove = true;
            speed = walkSpeed;
            cc = GetComponent<UnityEngine.CharacterController>();
@@ -36,8 +36,7 @@ public class CharacterController : MonoBehaviour
 
       private void Update()
        {
-
-         Debug.Log(isMoving);
+        
           PlayerMove();
           Debug.Log(speed);
        }
@@ -64,12 +63,12 @@ public class CharacterController : MonoBehaviour
                transform.rotation = Quaternion.Euler(0,angle,0);
               Vector3 moveDirection =  Quaternion.Euler(0,targetAngle,0) * Vector3.forward;
                cc.Move(new Vector3(moveDirection.x,moveVector.y,moveDirection.z) * (speed * Time.deltaTime));
-               animator.SetBool("transition_idle_marche",true);
+               // animator.SetBool("transition_idle_marche",true);
            }
            else
            {
                isMoving = false;
-               animator.SetBool("transition_idle_marche",false);
+               // animator.SetBool("transition_idle_marche",false);
            }
            if (Input.GetKey(KeyCode.LeftShift)&&isMoving)
                speed = Mathf.Lerp(speed, runSpeed, Time.deltaTime* timeToRun);

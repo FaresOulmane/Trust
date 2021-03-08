@@ -8,13 +8,21 @@ public class EnigmeBaton : BasicEnigme
     public float rangeActivateEnigme;
 
     public CharacterController player;
+    private bool endEnigme;
+
+    public bool EndEnigme
+    {
+        get => endEnigme;
+        set => endEnigme = value;
+    }
 
     public GameObject enigme;
     // Start is called before the first frame update
     void Start()
     {
+        EndEnigme = false;
         player = GameObject.FindWithTag("Player").GetComponent<CharacterController>();
-        enonce.text = "Pour ouvrir le cadenas, vous devez trouver le code dans la map";
+        enonce.text = "Ouvrez le cadenas à l'aide du code que vous avez trouvez";
         titreEnigme.text = "Enigme 1 : Batons";
         
     }
