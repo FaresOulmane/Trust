@@ -63,14 +63,14 @@ public class CharacterController : MonoBehaviour
                transform.rotation = Quaternion.Euler(0,angle,0);
               Vector3 moveDirection =  Quaternion.Euler(0,targetAngle,0) * Vector3.forward;
                cc.Move(new Vector3(moveDirection.x,moveVector.y,moveDirection.z) * (speed * Time.deltaTime));
-               animator.SetBool("marche",false); 
-            animator.SetBool("idle", true);
+               animator.SetBool("marche",true); 
+            
         }
            else
            {
                isMoving = false;
-               animator.SetBool("marche",true); 
-               animator.SetBool("idle", false);
+               animator.SetBool("marche",false); 
+             
         }
            if (Input.GetKey(KeyCode.LeftShift)&&isMoving)
                speed = Mathf.Lerp(speed, runSpeed, Time.deltaTime* timeToRun);
@@ -91,18 +91,24 @@ public class CharacterController : MonoBehaviour
            freeLookCam.SetActive(true);
        }
 
-       // private void OnTriggerStay(Collider col)
-       // {
-       //     Debug.Log("salut");
-       //     if (col.gameObject.CompareTag("Escalier"))
-       //     {
-       //         animator.SetBool("transition_escalier_idle",true);
-       //         animator.SetBool("transition_marche_escalier",true);
-       //     }
-       //     else if (col.gameObject.CompareTag("Untagged"))
-       //     {
-       //         animator.SetBool("transition_escalier_idle",false);
-       //         animator.SetBool("transition_marche_escalier",false);
-       //     }
-       // }
+       private void OnTriggerStay(Collider col)
+       {
+           Debug.Log("salut");
+           if (col.gameObject.CompareTag("Escalier"))
+           {
+               animator.SetBool("escalier",true);
+              
+           }
+          
+       }
+
+       private void OnTriggerExit(Collider col)
+       {
+           Debug.Log("slt");
+           if (col.gameObject.CompareTag("Escalier"))
+           {
+               animator.SetBool("escalier",false);
+              
+           }
+       }
 }
