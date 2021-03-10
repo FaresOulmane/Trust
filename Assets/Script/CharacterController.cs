@@ -19,10 +19,10 @@ public class CharacterController : MonoBehaviour
       private bool canMove;
       private bool isMoving;
       [SerializeField] private GameObject freeLookCam;
-        private Animator animator;
+        // private Animator animator;
       private void Awake()
       {
-          animator = GetComponent<Animator>();
+          // animator = GetComponent<Animator>();
           canMove = true;
            speed = walkSpeed;
            cc = GetComponent<UnityEngine.CharacterController>();
@@ -38,7 +38,6 @@ public class CharacterController : MonoBehaviour
        {
         
           PlayerMove();
-          Debug.Log(speed);
        }
    
        void PlayerMove()
@@ -63,13 +62,13 @@ public class CharacterController : MonoBehaviour
                transform.rotation = Quaternion.Euler(0,angle,0);
               Vector3 moveDirection =  Quaternion.Euler(0,targetAngle,0) * Vector3.forward;
                cc.Move(new Vector3(moveDirection.x,moveVector.y,moveDirection.z) * (speed * Time.deltaTime));
-               animator.SetBool("marche",true); 
+               // animator.SetBool("marche",true); 
             
         }
            else
            {
                isMoving = false;
-               animator.SetBool("marche",false); 
+               // animator.SetBool("marche",false); 
              
         }
            if (Input.GetKey(KeyCode.LeftShift)&&isMoving)
@@ -91,24 +90,24 @@ public class CharacterController : MonoBehaviour
            freeLookCam.SetActive(true);
        }
 
-       private void OnTriggerStay(Collider col)
-       {
-           Debug.Log("salut");
-           if (col.gameObject.CompareTag("Escalier"))
-           {
-               animator.SetBool("escalier",true);
-              
-           }
-          
-       }
+       // private void OnTriggerStay(Collider col)
+       // {
+       //     Debug.Log("salut");
+       //     if (col.gameObject.CompareTag("Escalier"))
+       //     {
+       //         animator.SetBool("escalier",true);
+       //        
+       //     }
+       //    
+       // }
 
-       private void OnTriggerExit(Collider col)
-       {
-           Debug.Log("slt");
-           if (col.gameObject.CompareTag("Escalier"))
-           {
-               animator.SetBool("escalier",false);
-              
-           }
-       }
+       // private void OnTriggerExit(Collider col)
+       // {
+       //     Debug.Log("slt");
+       //     if (col.gameObject.CompareTag("Escalier"))
+       //     {
+       //         animator.SetBool("escalier",false);
+       //        
+       //     }
+       // }
 }

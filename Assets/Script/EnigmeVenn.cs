@@ -5,21 +5,55 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class EnigmeVenn : MonoBehaviour
-{
-    // [SerializeField] private Button[] symbole;
-    public int digit = 1;
-    static int[] solution = {1, 2, 3};
-    private static int[] input = {-1, -1, -1};
+ {
+     
+ 
+   
+     public Text failed;
+     [SerializeField] private Button[] symbole;
+   
+     private int[] correctCombination = {1, 2, 3};
+     private int[]result = {0,0,0};
+    
+     public void isSelected(int index)
+     {
+         result[0] = result[1];
+         result[1] = result[2];
+         result[2] = index;
+         Debug.Log(index);
+        
+         symbole[index].interactable = false;
+       
 
-    private void OnMouseDown()
-    {
-        input[0] = input[1];
-        input[1] = input[2];
-        input[2] = digit;
+     }
 
-        if (solution[0] == input[0] && solution[1] == input[1] && solution[2] == input[2])
-        {
-            Debug.Log("corrects");
-        }
-    }
-}
+     public void Confirm()
+     {
+         if (result[0] == correctCombination[0] && result[1] == correctCombination[1] &&
+             result[2] == correctCombination[2])
+         {
+             Debug.Log("gg");
+         }
+         else
+         {
+             failed.text = " rate";
+         }
+     }
+
+     public void Reset()
+     {
+         foreach (var button in symbole)
+         {
+             button.interactable = true;
+         }
+
+         failed.text = "";
+
+         result[0] = 0;
+         result[1] = 0;
+         result[2] = 0;
+
+     }
+     
+   
+ }
