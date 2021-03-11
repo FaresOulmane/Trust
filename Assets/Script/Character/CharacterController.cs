@@ -1,0 +1,134 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CharacterController : MonoBehaviour
+{
+    private float speed;
+      [SerializeField] private float runSpeed;
+      [SerializeField] private float walkSpeed;
+      UnityEngine.CharacterController cc;
+     
+      [SerializeField] private float timeToRun;
+   
+       private float turnSmoothVelocity;
+      [SerializeField] private float turnSmoothTime;
+      [SerializeField] private Transform cam;
+      private float playerYVelocity;
+      private bool canMove;
+      private bool isMoving;
+      [SerializeField] private GameObject freeLookCam;
+        private Animator animator;
+
+        private void Awake()
+      {
+          animator = GetComponent<Animator>();
+          canMove = true;
+           speed = walkSpeed;
+           cc = GetComponent<UnityEngine.CharacterController>();
+         
+      }
+
+      private void Start()
+      {
+          isMoving = false;
+      }
+
+      private void Update()
+       {
+        
+          PlayerMove();
+         
+       }
+   // Deplacement du perso gerant la rotation selon la camera et jouant les animation de course ou marche
+       void PlayerMove()
+       {
+         
+            bool isGrounded = cc.isGrounded;
+           if (isGrounded && playerYVelocity < 0)
+           {
+               playerYVelocity = 0f;
+           }
+           playerYVelocity += Physics.gravity.y * Time.deltaTime;
+           Vector3 moveVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+           moveVector.y = playerYVelocity;
+           
+           if (canMove &&( Input.GetAxisRaw("Horizontal")!=0 || Input.GetAxisRaw("Vertical")!=0) )
+           {
+               isMoving = true;
+              
+               float targetAngle = Mathf.Atan2(moveVector.x, moveVector.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+               float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity,
+                   turnSmoothTime);
+               transform.rotation = Quaternion.Euler(0,angle,0);
+              Vector3 moveDirection =  Quaternion.Euler(0,targetAngle,0) * Vector3.forward;
+               cc.Move(new Vector3(moveDirection.x,moveVector.y,moveDirection.z) * (speed * Time.deltaTime));
+               
+               if (speed <= walkSpeed + 1)
+               {
+                   animator.SetBool("marche",true);
+                   animator.SetBool("run",false); 
+               }
+
+               else
+               {
+                  animator.SetBool("run",true); 
+               }
+           }
+           else
+           {
+               isMoving = false;
+               animator.SetBool("marche",false); 
+               animator.SetBool("run",false); 
+             
+        }
+           if (Input.GetKey(KeyCode.LeftShift)&&isMoving)
+               speed = Mathf.Lerp(speed, runSpeed, Time.deltaTime* timeToRun);
+           else
+               speed = Mathf.Lerp(speed, walkSpeed, Time.deltaTime * timeToRun);
+       }
+// freeze le perso et la camera
+       public void StopMove()
+       {
+           canMove = false;
+           freeLookCam.SetActive(false);
+
+       }
+// redonne la possibilite au joueur de se deplacer et de bouger la cam
+       public void MoveAgain()
+       {
+           canMove = true;
+           freeLookCam.SetActive(true);
+       }
+// detecte si le joueur est sur un escalier pour jouer l anim
+       private void OnTriggerStay(Collider col)
+       {
+           Debug.Log("salut");
+           if (col.gameObject.CompareTag("Escalier"))
+           {
+               if(isMoving)
+               animator.SetBool("escalier",true);
+               else
+                   animator.SetBool("escalier",false);
+                   
+               
+               // Vector3 forward = transform.TransformDirection(Vector3.forward); Vector3 toOther = col.gameObject.transform.position - transform.position;
+               //
+               // if (Vector3.Dot(forward, toOther) < 1) 
+               //     print("The other transform is behind me!");
+              
+           }
+          
+       }
+// quand le joueur n est plus sur un escalier l animation escalier s arrete
+       private void OnTriggerExit(Collider col)
+       {
+           Debug.Log("slt");
+           if (col.gameObject.CompareTag("Escalier"))
+           {
+               animator.SetBool("escalier",false);
+              
+           }
+       }
+}
