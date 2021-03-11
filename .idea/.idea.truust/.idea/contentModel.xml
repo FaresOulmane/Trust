@@ -8,15 +8,26 @@
       <e p="Assets" t="Include">
         <e p="Script" t="Include">
           <e p="BasicEnigme.cs" t="Include" />
-          <e p="CharacterController.cs" t="Include" />
+          <e p="Character" t="Include">
+            <e p="CharacterController.cs" t="Include" />
+          </e>
           <e p="Draw.cs" t="Include" />
-          <e p="EnigmeBaton.cs" t="Include" />
-          <e p="EnigmeCarreMagique.cs" t="Include" />
-          <e p="EnigmeVenn.cs" t="Include" />
-          <e p="LockControl.cs" t="Include" />
-          <e p="LockRotate.cs" t="Include" />
-          <e p="Plaque.cs" t="Include" />
-          <e p="PlaqueNumber.cs" t="Include" />
+          <e p="EnigmeBaton" t="Include">
+            <e p="EnigmeBaton.cs" t="Include" />
+            <e p="LockRotate.cs" t="Include" />
+          </e>
+          <e p="EnigmeCarreMagique" t="Include">
+            <e p="EnigmeCarreMagique.cs" t="Include" />
+            <e p="Plaque.cs" t="Include" />
+            <e p="PlaqueNumber.cs" t="Include" />
+          </e>
+          <e p="EnigmeCryptex" t="Include">
+            <e p="CryptexRotate.cs" t="Include" />
+            <e p="EnigmeCryptex.cs" t="Include" />
+          </e>
+          <e p="EnigmeVenn" t="Include">
+            <e p="EnigmeVenn.cs" t="Include" />
+          </e>
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
