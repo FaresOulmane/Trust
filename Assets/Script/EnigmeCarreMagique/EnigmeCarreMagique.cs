@@ -57,6 +57,7 @@ public class EnigmeCarreMagique : BasicEnigme
        )
        {
            Debug.Log("gg");
+           failedText.gameObject.SetActive(false);
            winText.gameObject.SetActive(true);
            StopCoroutine(nameof(LeaveEnigmeAfterWin));
            StartCoroutine(nameof(LeaveEnigmeAfterWin));
@@ -64,4 +65,11 @@ public class EnigmeCarreMagique : BasicEnigme
        else
            failedText.gameObject.SetActive(true);
    }
+
+   protected override void LeaveEnigme()
+   {
+       base.LeaveEnigme();
+       failedText.gameObject.SetActive(false);
+   }
+   
 }

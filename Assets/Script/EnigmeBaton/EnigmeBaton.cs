@@ -20,10 +20,12 @@ public class EnigmeBaton : BasicEnigme
     }
 // desactive le script une fois l enigme fini
      void Update()
-    {
+     {
+        
        StartEnigme();
        if (EndEnigme)
        {
+           enigmeActivate = false;
            GetComponent<EnigmeBaton>().enabled = false;
        }
     }
@@ -56,5 +58,5 @@ public class EnigmeBaton : BasicEnigme
          }
      }
 
-    
+
 }

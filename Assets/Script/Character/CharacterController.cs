@@ -44,16 +44,14 @@ public class CharacterController : MonoBehaviour
    // Deplacement du perso gerant la rotation selon la camera et jouant les animation de course ou marche
        void PlayerMove()
        {
-         
-            bool isGrounded = cc.isGrounded;
-           if (isGrounded && playerYVelocity < 0)
-           {
+
+           if (!cc.isGrounded) 
+               playerYVelocity += Physics.gravity.y * Time.deltaTime;
+           else
                playerYVelocity = 0f;
-           }
-           playerYVelocity += Physics.gravity.y * Time.deltaTime;
            Vector3 moveVector = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
            moveVector.y = playerYVelocity;
-           
+          
            if (canMove &&( Input.GetAxisRaw("Horizontal")!=0 || Input.GetAxisRaw("Vertical")!=0) )
            {
                isMoving = true;
@@ -78,6 +76,7 @@ public class CharacterController : MonoBehaviour
            }
            else
            {
+              
                isMoving = false;
                animator.SetBool("marche",false); 
                animator.SetBool("run",false); 
@@ -104,30 +103,42 @@ public class CharacterController : MonoBehaviour
 // detecte si le joueur est sur un escalier pour jouer l anim
        private void OnTriggerStay(Collider col)
        {
-           Debug.Log("salut");
+          
            if (col.gameObject.CompareTag("Escalier"))
            {
-               if(isMoving)
-               animator.SetBool("escalier",true);
+               Vector3 forward = transform.TransformDirection(Vector3.forward); Vector3 toOther = col.gameObject.transform.position - transform.position;
+               if (isMoving)
+               {
+                   if (Vector3.Dot(forward, toOther) < 1)
+                   {
+                       animator.SetBool("escalier",true);
+                       animator.SetBool("escalierDown",false);
+                   }
+                   else
+                   {
+                       animator.SetBool("escalierDown", true);
+                       animator.SetBool("escalier",false);
+                   }
+                  
+               }
+
                else
+               {
                    animator.SetBool("escalier",false);
-                   
-               
-               // Vector3 forward = transform.TransformDirection(Vector3.forward); Vector3 toOther = col.gameObject.transform.position - transform.position;
-               //
-               // if (Vector3.Dot(forward, toOther) < 1) 
-               //     print("The other transform is behind me!");
-              
+                   animator.SetBool("escalierDown",false);
+               }
+
            }
           
        }
 // quand le joueur n est plus sur un escalier l animation escalier s arrete
        private void OnTriggerExit(Collider col)
        {
-           Debug.Log("slt");
+          
            if (col.gameObject.CompareTag("Escalier"))
            {
                animator.SetBool("escalier",false);
+               animator.SetBool("escalierDown",false);
               
            }
        }

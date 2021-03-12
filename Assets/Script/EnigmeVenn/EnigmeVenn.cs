@@ -40,12 +40,13 @@ public class EnigmeVenn : BasicEnigme
              result[2] == correctCombination[2])
          {
              winText.gameObject.SetActive(true);
+             failedText.gameObject.SetActive(false);
              StopCoroutine(nameof(LeaveEnigmeAfterWin));
              StartCoroutine(nameof(LeaveEnigmeAfterWin));
          }
          else
          {
-             failedText.text = " rate";
+             failedText.gameObject.SetActive(true);
          }
      }
 // remet les symbole en interractable
@@ -56,7 +57,7 @@ public class EnigmeVenn : BasicEnigme
              button.interactable = true;
          }
 
-         failedText.text = "";
+         failedText.gameObject.SetActive(false);
 
          result[0] = 0;
          result[1] = 0;
@@ -78,4 +79,10 @@ public class EnigmeVenn : BasicEnigme
          }
 
      }
+     protected override void LeaveEnigme()
+     {
+         base.LeaveEnigme();
+         failedText.gameObject.SetActive(false);
+     }
+    
  }
