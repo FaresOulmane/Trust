@@ -27,6 +27,9 @@ public class BasicEnigme : MonoBehaviour
    private string rank;
 
    public string Rank => rank;
+   private int rankCoef;
+
+   public int RankCoef => rankCoef;
 
    private float timer=0f;
     public float Timer => timer;
@@ -144,23 +147,28 @@ public class BasicEnigme : MonoBehaviour
          if (timer < secondeForSRank)
          {
             rank = "S";
+            rankCoef = 1;
          }
          if (timer < secondeForARank && timer>secondeForSRank)
          {
             rank = "A";
+            rankCoef = 2;
          }
          if (timer < secondeForBRank && timer>secondeForARank)
          {
             rank = "B";
+            rankCoef = 3;
          }
          if (timer >secondeForBRank )
          {
             rank = "C";
+            rankCoef = 4;
          }
       }
       else
       {
          rank = "C";
+         rankCoef = 4;
       }
      
       winText.text = "Bravo,vous avez réussi l'enigme en " + timerString + " \nVoici votre note: " +

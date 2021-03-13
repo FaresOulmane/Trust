@@ -13,6 +13,7 @@ public class RankManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalRank;
     private float finalTimer;
     private string finalTimerString;
+    private string finalstringRank;
     private void Awake()
     {
        finalRank.gameObject.SetActive(false);
@@ -38,16 +39,37 @@ public class RankManager : MonoBehaviour
    IEnumerator RegroupResult()
     {
         TimerControl();
+       
         if (eb.EndEnigme && ec.EndEnigme && ecm.EndEnigme && ev.EndEnigme)
         {
             yield return new WaitForSeconds(2f);
             player.StopMove();
             finalRank.gameObject.SetActive(true);
             finalTimer = eb.Timer + ec.Timer + ecm.Timer + ev.Timer;
+            float finalRankWithCoef =
+                ((eb.Timer * eb.RankCoef)+ (ev.Timer * ev.RankCoef)+ (ec.Timer * ec.RankCoef) + (ecm.Timer * ecm.RankCoef)) /
+                (eb.RankCoef + ev.RankCoef + ec.RankCoef + ecm.RankCoef);
+
+            if (finalRankWithCoef <= 15*60)
+            {
+                finalstringRank = "S";
+            }
+            if (finalRankWithCoef> 15*60 && finalRankWithCoef <=20 *60)
+            {
+                finalstringRank = "A";
+            }
+            if (finalRankWithCoef > 20*60 && finalRankWithCoef <=25*60)
+            {
+                finalstringRank = "B";
+            }
+            if (finalRankWithCoef > 25*60)
+            {
+                finalstringRank = "C";
+            }
             finalRank.text = "Félicitation pour avoir fini le jeu !!\n\n Voici vos résultat: \n\nEnigme 1: Batons," +
                              eb.TimerString + "," + eb.Rank + " \n\nEnigme 2: Diagramme de Venn," + ev.TimerString + "," + ev.Rank +
                              " \n\nEnigme 3: Carre Magique," + ecm.TimerString + "," + ecm.Rank+ " \n\nEnigme 4: Cryptex," +
-                             ec.TimerString + "," + ec.Rank + " \n\nVotre Temps Final: " + finalTimerString+" \n\nVotre note final:";
+                             ec.TimerString + "," + ec.Rank + " \n\nVotre Temps Final: " + finalTimerString+" \n\nVotre note final: "+finalstringRank;
         }
     }
 }

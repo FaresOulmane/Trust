@@ -1,0 +1,204 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class MainEasterEgg : MonoBehaviour
+{
+    private bool interactable = false;
+    private CharacterController player;
+    [SerializeField] private float rangeActivateEnigme;
+    [SerializeField] private GameObject panel;
+    [SerializeField] private TextMeshProUGUI[] bonneLettre;
+    [SerializeField] private GameObject[] pendaison;
+    public int essai = 7;
+    private bool canPress = true;
+    [SerializeField] private GameObject[] fullPendaison;
+    [SerializeField] private GameObject[] endOfEasterEgg;
+    [SerializeField] private TextMeshProUGUI lettreEnonce;
+    private string[] lettre;
+    public float timer = 3f;
+    public float secondTimer = 5f;
+    private bool endEvent = false;
+ 
+    public bool Interactable
+    {
+        get => interactable;
+        set => interactable = value;
+    }
+
+    private void Awake()
+    {
+        lettre = new string[18];
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (essai <=0 && !endEvent)
+        {
+            essai = 0;
+            timer -= Time.deltaTime;
+            
+            if (timer <= 0)
+            {
+                for (int i = 0; i < fullPendaison.Length; i++)
+                {
+                    fullPendaison[i].SetActive(false);
+                }
+                for (int i = 0; i < endOfEasterEgg.Length; i++)
+                {
+                    endOfEasterEgg[i].SetActive(true);
+                }
+
+                timer =0;
+                secondTimer -= Time.deltaTime;
+                if (secondTimer <=0)
+                {
+                    for (int i = 0; i < endOfEasterEgg.Length; i++)
+                    {
+                        endOfEasterEgg[i].SetActive(false);
+                    }
+
+                    endEvent = true;
+                    interactable = false;
+                }
+            }
+                           
+            
+        }
+        // if(interactable && (Vector3.Distance(transform.position, player.transform.position) <= rangeActivateEnigme))
+        // {
+        if (interactable && !endEvent)
+        {
+            if (canPress)
+            {
+                essai -= 1;
+                canPress = false;
+            }
+            panel.SetActive(true);
+           
+            if (Input.inputString != "")
+            {
+                int asciCode = System.Convert.ToInt32(Input.inputString[0]);
+                if (asciCode >= 65 && asciCode <= 122)
+                {
+                    // for (int i = 0; i < lettre.Length; i++)
+                    // {
+                    //     lettre[i] = Input.inputString;
+                    //     lettreEnonce.text = "Lettre enoncer: "+lettre[0]+ "," + lettre[1];
+                    // }
+                    if (asciCode == 77 || asciCode == 109)
+                    {
+                        bonneLettre[0].text = "M";
+                        bonneLettre[4].text = "M";
+
+                    }
+
+                    if (asciCode == 65 || asciCode == 101)
+                    {
+                        bonneLettre[1].text = "E";
+
+                    }
+
+                    if (asciCode == 78 || asciCode == 110)
+                    {
+                        bonneLettre[2].text = "N";
+
+                    }
+
+                    if (asciCode == 85 || asciCode == 117)
+                    {
+                        bonneLettre[3].text = "U";
+
+                    }
+
+                    if (asciCode == 67 || asciCode == 99)
+                    {
+                        bonneLettre[5].text = "C";
+
+                    }
+
+                    if (asciCode == 70 || asciCode == 102)
+                    {
+                        bonneLettre[6].text = "F";
+
+                    }
+
+                    if (asciCode == 73 || asciCode == 105)
+                    {
+                        bonneLettre[7].text = "I";
+
+                    }
+
+                    if (asciCode == 82 || asciCode == 114)
+                    {
+                        bonneLettre[8].text = "R";
+
+                    }
+
+                    if (asciCode == 83 || asciCode == 115)
+                    {
+                        bonneLettre[9].text = "S";
+
+                    }
+
+                    if (asciCode == 84 || asciCode == 116)
+                    {
+                        bonneLettre[10].text = "T";
+
+                    }
+
+                    if (asciCode != 84 && asciCode != 116 && asciCode != 115 && asciCode != 114 &&
+                        asciCode != 105 &&
+                        asciCode != 102 && asciCode != 117 && asciCode != 110 && asciCode != 101 &&
+                        asciCode != 83 && asciCode != 82 && asciCode != 73 && asciCode != 70 && asciCode != 85 &&
+                        asciCode != 78 && asciCode != 65 && asciCode != 77  && asciCode != 67 && asciCode != 99  && asciCode != 109)
+                    {
+                       
+                        canPress = true;
+                        if (essai == 7)
+                            pendaison[0].SetActive(true);
+
+                        if (essai == 6)
+                            pendaison[1].SetActive(true);
+
+                        if (essai == 5)
+                            pendaison[2].SetActive(true);
+                    
+
+                        if (essai == 4)
+                            pendaison[3].SetActive(true);
+
+
+                        if (essai == 3)
+                            pendaison[4].SetActive(true);
+
+                        if (essai == 2)
+                            pendaison[5].SetActive(true);
+
+                        if (essai == 1)
+                            pendaison[6].SetActive(true);
+                        
+                       
+                    }
+                }
+            }
+            
+        }
+    }
+    
+}
+        
+        
+
+    
+
+
+        
+    
+   
+

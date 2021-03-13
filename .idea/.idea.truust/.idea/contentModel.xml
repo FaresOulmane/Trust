@@ -27,6 +27,8 @@
           <e p="EnigmeVenn" t="Include">
             <e p="EnigmeVenn.cs" t="Include" />
           </e>
+          <e p="GlobeRotation.cs" t="Include" />
+          <e p="MainEasterEgg.cs" t="Include" />
           <e p="RankManager.cs" t="Include" />
         </e>
         <e p="SkySerie Freebie" t="Include">
