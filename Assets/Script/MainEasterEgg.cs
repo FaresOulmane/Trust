@@ -14,16 +14,16 @@ public class MainEasterEgg : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private TextMeshProUGUI[] bonneLettre;
     [SerializeField] private GameObject[] pendaison;
-    public int essai = 7;
+    private int essai = 7;
     private bool canPress = true;
     [SerializeField] private GameObject[] fullPendaison;
     [SerializeField] private GameObject[] endOfEasterEgg;
     [SerializeField] private TextMeshProUGUI lettreEnonce;
     private string[] lettre;
-    public float timer = 3f;
-    public float secondTimer = 5f;
+    private float timer = 3f;
+    private float secondTimer = 6f;
     private bool endEvent = false;
- 
+    private int[] winLetter;
     public bool Interactable
     {
         get => interactable;
@@ -33,12 +33,14 @@ public class MainEasterEgg : MonoBehaviour
     private void Awake()
     {
         lettre = new string[18];
+        winLetter = new int[10];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (essai <=0 && !endEvent)
+        if (essai <=0 || winLetter[0] == 1 && winLetter[1] == 1 && winLetter[2] == 1 && winLetter[3] == 1 && winLetter[4] == 1
+            && winLetter[5] == 1 && winLetter[6] == 1 && winLetter[7] == 1 && winLetter[8] == 1 && winLetter[9] == 1 && !endEvent)
         {
             essai = 0;
             timer -= Time.deltaTime;
@@ -89,66 +91,76 @@ public class MainEasterEgg : MonoBehaviour
                     // for (int i = 0; i < lettre.Length; i++)
                     // {
                     //     lettre[i] = Input.inputString;
-                    //     lettreEnonce.text = "Lettre enoncer: "+lettre[0]+ "," + lettre[1];
+                    //     lettreEnonce.text = "Lettres Utilisées: "+lettre[0]+ "," + lettre[1];
                     // }
                     if (asciCode == 77 || asciCode == 109)
                     {
                         bonneLettre[0].text = "M";
                         bonneLettre[4].text = "M";
+                        winLetter[0] = 1;
 
                     }
 
                     if (asciCode == 65 || asciCode == 101)
                     {
                         bonneLettre[1].text = "E";
+                        winLetter[1] = 1;
 
                     }
 
                     if (asciCode == 78 || asciCode == 110)
                     {
                         bonneLettre[2].text = "N";
+                        winLetter[2] = 1;
 
                     }
 
                     if (asciCode == 85 || asciCode == 117)
                     {
                         bonneLettre[3].text = "U";
+                        winLetter[3] = 1;
 
                     }
 
                     if (asciCode == 67 || asciCode == 99)
                     {
                         bonneLettre[5].text = "C";
+                        winLetter[4] = 1;
 
                     }
 
                     if (asciCode == 70 || asciCode == 102)
                     {
                         bonneLettre[6].text = "F";
+                        winLetter[5] = 1;
 
                     }
 
                     if (asciCode == 73 || asciCode == 105)
                     {
                         bonneLettre[7].text = "I";
+                        winLetter[6] = 1;
 
                     }
 
                     if (asciCode == 82 || asciCode == 114)
                     {
                         bonneLettre[8].text = "R";
+                        winLetter[7] = 1;
 
                     }
 
                     if (asciCode == 83 || asciCode == 115)
                     {
                         bonneLettre[9].text = "S";
+                        winLetter[8] = 1;
 
                     }
 
                     if (asciCode == 84 || asciCode == 116)
                     {
                         bonneLettre[10].text = "T";
+                        winLetter[9] = 1;
 
                     }
 
