@@ -108,6 +108,7 @@ public class CharacterController : MonoBehaviour
           
            if (col.gameObject.CompareTag("Escalier"))
            {
+              
                Vector3 forward = transform.TransformDirection(Vector3.forward); Vector3 toOther = col.gameObject.transform.position - transform.position;
                if (isMoving)
                {
@@ -136,7 +137,7 @@ public class CharacterController : MonoBehaviour
 // quand le joueur n est plus sur un escalier l animation escalier s arrete
        private void OnTriggerExit(Collider col)
        {
-          
+        
            if (col.gameObject.CompareTag("Escalier"))
            {
                animator.SetBool("escalier",false);
