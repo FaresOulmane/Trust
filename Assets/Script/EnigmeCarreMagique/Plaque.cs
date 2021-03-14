@@ -19,7 +19,7 @@ public class Plaque : MonoBehaviour
     void Awake()
     {
        
-        startedPos = transform.localPosition;
+        startedPos = transform.position;
     }
     // recupere les pos quand on clique sur la plaque
     void OnMouseDown()
@@ -64,7 +64,7 @@ public class Plaque : MonoBehaviour
         if (col.gameObject.CompareTag(("Coffre")))
         {
             placable = false;
-            Debug.Log("YEEEEEEEAH");
+           
         }
     }
 }

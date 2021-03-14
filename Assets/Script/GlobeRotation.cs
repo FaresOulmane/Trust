@@ -18,6 +18,7 @@ public class GlobeRotation : MonoBehaviour
            if (first)
            {
                mee.Interactable = true;
+              
            }
            RotateGlobe();
        }

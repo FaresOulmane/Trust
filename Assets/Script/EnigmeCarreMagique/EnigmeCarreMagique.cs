@@ -23,7 +23,7 @@ public class EnigmeCarreMagique : BasicEnigme
     {
         for (int i = 0; i < plaque.Length; i++)
         {
-            plaque[i].transform.localPosition = plaque[i].StartedPos;
+            plaque[i].transform.position = plaque[i].StartedPos;
         }
 
         failedText.gameObject.SetActive(false);

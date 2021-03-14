@@ -18,7 +18,9 @@ public class CharacterController : MonoBehaviour
       private float playerYVelocity;
       private bool canMove;
       private bool isMoving;
-      [SerializeField] private GameObject freeLookCam;
+      private bool onEnigme;
+      public bool OnEnigme => onEnigme;
+      
         private Animator animator;
 
         private void Awake()
@@ -91,14 +93,14 @@ public class CharacterController : MonoBehaviour
        public void StopMove()
        {
            canMove = false;
-           freeLookCam.SetActive(false);
+           onEnigme = true;
 
        }
 // redonne la possibilite au joueur de se deplacer et de bouger la cam
        public void MoveAgain()
        {
            canMove = true;
-           freeLookCam.SetActive(true);
+           onEnigme = false;
        }
 // detecte si le joueur est sur un escalier pour jouer l anim
        private void OnTriggerStay(Collider col)
