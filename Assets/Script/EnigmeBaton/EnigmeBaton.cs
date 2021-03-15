@@ -7,8 +7,10 @@ public class EnigmeBaton : BasicEnigme
 {
     private int[] result;
 
-    private int[] correctCombination; 
+    private int[] correctCombination;
+    [SerializeField] private Animator coffreAnim;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject cadenasCoffre;
     void Start()
     {
         enonce.text = "Ouvrez le cadenas à l'aide du code que vous avez trouvez";
@@ -55,8 +57,16 @@ public class EnigmeBaton : BasicEnigme
              animator.SetBool("unlock", true);
              StopCoroutine(nameof(LeaveEnigmeAfterWin));
              StartCoroutine(nameof(LeaveEnigmeAfterWin));
+             StartCoroutine(AnimCoffre());
          }
      }
 
+     IEnumerator AnimCoffre()
+     {
+         yield return new WaitForSeconds(4f);
+         cadenasCoffre.SetActive(false);
+         coffreAnim.SetBool("open",true);
+         
+     }
 
 }

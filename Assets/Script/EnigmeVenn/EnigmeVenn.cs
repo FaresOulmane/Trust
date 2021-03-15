@@ -27,7 +27,7 @@ public class EnigmeVenn : BasicEnigme
          result[0] = result[1];
          result[1] = result[2];
          result[2] = index;
-         Debug.Log(index);
+        
         
          symbole[index].interactable = false;
        
