@@ -12,6 +12,8 @@ public class BasicEnigme : MonoBehaviour
    [SerializeField] private string indiceText;
    [SerializeField] protected TextMeshProUGUI failedText;
    [SerializeField] protected TextMeshProUGUI notNowText;
+   protected Vector3 notNowTextStartPos;
+   private bool cantEnigme;
    [Header("Distance necessaire pour activer l'enigme")]
    [SerializeField] protected float rangeActivateEnigme;
    private CharacterController player;
@@ -57,7 +59,9 @@ public class BasicEnigme : MonoBehaviour
    {
       EndEnigme = false;
       player = GameObject.FindWithTag("Player").GetComponent<CharacterController>();
+     
    }
+
    // Active tout les elements necessaire a l'enigme
    protected virtual void StartEnigme()
    {
@@ -83,6 +87,7 @@ public class BasicEnigme : MonoBehaviour
          textForInteraction.text = "";
       }
    }
+   
 // met un message si l enigme d avant n ai pas fini
    protected void CantDoEnigme()
    {
@@ -90,21 +95,26 @@ public class BasicEnigme : MonoBehaviour
       {
          if (Input.GetKeyDown(KeyCode.E))
          {
-            player.StopMove();
-            panel.SetActive(true);
+            cantEnigme = true;
             notNowText.gameObject.SetActive(true);
             StopCoroutine(nameof(StopMessage));
             StartCoroutine(nameof(StopMessage));
          }
       }
+
+      if (cantEnigme)
+      {
+         notNowText.gameObject.transform.Translate(Vector3.up*Time.deltaTime);
+      }
    }
 // fait disparaitre le message et permet au joueur de se deplacer 
    IEnumerator StopMessage()
    {
-      yield return new WaitForSeconds(3f);
+      yield return new WaitForSeconds(2f);
+      cantEnigme = false;
+      notNowText.gameObject.transform.position = notNowTextStartPos;
       notNowText.gameObject.SetActive(false);
-      player.MoveAgain();
-      panel.SetActive(false);
+     
    }
    // si une enigme est reussi cela fermera l'interface automatiquement
    protected IEnumerator LeaveEnigmeAfterWin()

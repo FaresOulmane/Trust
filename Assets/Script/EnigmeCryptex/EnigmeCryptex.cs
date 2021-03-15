@@ -15,6 +15,8 @@ public class EnigmeCryptex : BasicEnigme
     {
         result = new int[] {0, 0, 0, 0,0,0,0};
         correctCombination = new int[]{12,0,2,7,8,13,4};
+        notNowTextStartPos = notNowText.gameObject.GetComponent<Transform>().position;
+        notNowTextStartPos = notNowText.gameObject.transform.position;
        
     }
 // s abonne a l event

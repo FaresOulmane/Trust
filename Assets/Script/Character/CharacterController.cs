@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
@@ -19,9 +20,14 @@ public class CharacterController : MonoBehaviour
       private bool canMove;
       private bool isMoving;
       private bool onEnigme;
+    
       public bool OnEnigme => onEnigme;
       
         private Animator animator;
+        
+        [SerializeField] private TextMeshProUGUI textInteract;
+        private Transform camTr;
+        private RectTransform interactRect;
 
         private void Awake()
       {
@@ -29,7 +35,9 @@ public class CharacterController : MonoBehaviour
           canMove = true;
            speed = walkSpeed;
            cc = GetComponent<UnityEngine.CharacterController>();
-         
+           camTr = Camera.main.transform;
+           interactRect = textInteract.GetComponent<RectTransform>();
+
       }
 
       private void Start()
@@ -39,10 +47,11 @@ public class CharacterController : MonoBehaviour
 
       private void Update()
        {
-        
-          PlayerMove();
+           PlayerMove();
          
+          interactRect.rotation = camTr.rotation;
        }
+    
    // Deplacement du perso gerant la rotation selon la camera et jouant les animation de course ou marche
        void PlayerMove()
        {
@@ -63,6 +72,7 @@ public class CharacterController : MonoBehaviour
                    turnSmoothTime);
                transform.rotation = Quaternion.Euler(0,angle,0);
               Vector3 moveDirection =  Quaternion.Euler(0,targetAngle,0) * Vector3.forward;
+           
                cc.Move(new Vector3(moveDirection.x,moveVector.y,moveDirection.z) * (speed * Time.deltaTime));
                
                if (speed <= walkSpeed + 1)

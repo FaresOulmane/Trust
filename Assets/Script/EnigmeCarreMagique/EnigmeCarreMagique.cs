@@ -8,6 +8,12 @@ public class EnigmeCarreMagique : BasicEnigme
     [SerializeField] private Plaque[] plaque;
 
     [SerializeField] private EnigmeVenn enigmeVenn;
+    
+    private void Start()
+    {
+        notNowTextStartPos = notNowText.gameObject.GetComponent<Transform>().position;
+        notNowTextStartPos = notNowText.gameObject.transform.position;
+    }
   // recupere le chiffre des plaque
     void Update()
     {

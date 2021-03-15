@@ -10,7 +10,13 @@ public class EnigmeVenn : BasicEnigme
      [SerializeField] private EnigmeBaton enigmeBaton;
      private int[] correctCombination = {0, 1, 2};
      private int[]result = {0,0,0};
-     
+
+     private void Start()
+     {
+         notNowTextStartPos = notNowText.gameObject.GetComponent<Transform>().position;
+         notNowTextStartPos = notNowText.gameObject.transform.position;
+     }
+
      void Update()
      {
        
