@@ -18,8 +18,9 @@ public class OpenDoor : MonoBehaviour
         {
             doorBox.transform.localPosition = new Vector3(0.5f,0,0.5f);
             doorBox.transform.localRotation = Quaternion.Euler(0,90,0);
-            animator.SetFloat("Direction",1);
-            animator.Play("openDoor",-1, float.NegativeInfinity);
+            animator.SetBool("Open",true);
+            animator.SetBool("Close",false);
+         
         }
     }
     private void OnTriggerExit(Collider col)
@@ -28,8 +29,8 @@ public class OpenDoor : MonoBehaviour
         {
             doorBox.transform.localPosition = new Vector3(0,0,0);
             doorBox.transform.localRotation = Quaternion.Euler(0,0,0);
-            animator.SetFloat("Direction",-1);
-            animator.Play("openDoor",-1, float.NegativeInfinity);
+            animator.SetBool("Open",false);
+            animator.SetBool("Close",true);
 
         }
     }
