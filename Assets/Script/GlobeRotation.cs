@@ -8,12 +8,12 @@ public class GlobeRotation : MonoBehaviour
        float rot;
        private bool first = false;
       [SerializeField] private MainEasterEgg mee;
-      private Animator animator;
-
-      void Awake()
-      {
-          animator = GetComponent<Animator>();
-      }
+      // private Animator animator;
+      //
+      // void Awake()
+      // {
+      //     animator = GetComponent<Animator>();
+      // }
        private void Update()
        {
            if (tour >= 10)
@@ -31,16 +31,16 @@ public class GlobeRotation : MonoBehaviour
    
        private void RotateGlobe()
        {
-           if (Input.GetKey(KeyCode.Space))
+           if (Input.GetKey(KeyCode.E))
            {
                tour += Time.deltaTime;
-               animator.SetBool("rotating",true);
-               animator.SetBool("stopRotate",false);
+               // animator.SetBool("rotating",true);
+               // animator.SetBool("stopRotate",false);
            }
-           if(Input.GetKeyUp(KeyCode.Space))
+           if(Input.GetKeyUp(KeyCode.E))
            {
-               animator.SetBool("rotating",false);
-               animator.SetBool("stopRotate",true);
+               // animator.SetBool("rotating",false);
+               // animator.SetBool("stopRotate",true);
                tour = 0;
            }
            
