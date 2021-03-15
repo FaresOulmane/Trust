@@ -14,6 +14,7 @@ public class RankManager : MonoBehaviour
     private float finalTimer;
     private string finalTimerString;
     private string finalstringRank;
+    [SerializeField] private TextMeshProUGUI finalTimerForPause;
     private void Awake()
     {
        finalRank.gameObject.SetActive(false);
@@ -22,7 +23,7 @@ public class RankManager : MonoBehaviour
     void Update()
     {
         StartCoroutine(RegroupResult());
-        
+        finalTimer = eb.Timer + ec.Timer + ecm.Timer + ev.Timer;
     }
     // controle l affichage du timer format etc
     void TimerControl()
@@ -33,7 +34,7 @@ public class RankManager : MonoBehaviour
         int hour = (int) (finalTimer / 3600) % 24;
       
         finalTimerString = string.Format("{0:00}:{1:00}:{2:00}",hour,minutes,seconds);
-      
+        finalTimerForPause.text = finalTimerString;
     }
     // Recupere les note et temps contenu dans les autres scripts et affiche les resultat
    IEnumerator RegroupResult()
@@ -45,7 +46,7 @@ public class RankManager : MonoBehaviour
             yield return new WaitForSeconds(2f);
             player.StopMove();
             finalRank.gameObject.SetActive(true);
-            finalTimer = eb.Timer + ec.Timer + ecm.Timer + ev.Timer;
+           
             float finalRankWithCoef =
                 ((eb.Timer * eb.RankCoef)+ (ev.Timer * ev.RankCoef)+ (ec.Timer * ec.RankCoef) + (ecm.Timer * ecm.RankCoef)) /
                 (eb.RankCoef + ev.RankCoef + ec.RankCoef + ecm.RankCoef);

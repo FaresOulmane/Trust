@@ -11,6 +11,13 @@
             <e p="OpenDoor.cs" t="Include" />
           </e>
         </e>
+        <e p="Menu_Pause_SceneManager" t="Include">
+          <e p="Menu" t="Include">
+            <e p="MenuScript.cs" t="Include" />
+          </e>
+          <e p="PauseController.cs" t="Include" />
+          <e p="SceneManager.cs" t="Include" />
+        </e>
         <e p="QuickOutline" t="Include">
           <e p="Readme.txt" t="Include" />
           <e p="Resources" t="Include">

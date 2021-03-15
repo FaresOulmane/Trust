@@ -69,7 +69,7 @@ public class BasicEnigme : MonoBehaviour
       
       if (Vector3.Distance(transform.position, player.transform.position) <= rangeActivateEnigme) 
       {
-         if (Input.GetKeyDown(KeyCode.A))
+         if (Input.GetKeyDown(KeyCode.E))
          {
             for (int i = 0; i < activatedInterface.Length; i++)
             {
@@ -86,7 +86,7 @@ public class BasicEnigme : MonoBehaviour
    {
       if (Vector3.Distance(transform.position, player.transform.position) <= rangeActivateEnigme)
       {
-         if (Input.GetKeyDown(KeyCode.A))
+         if (Input.GetKeyDown(KeyCode.E))
          {
             player.StopMove();
             panel.SetActive(true);
