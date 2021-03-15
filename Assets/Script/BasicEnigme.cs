@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using TMPro;
-using TMPro.EditorUtilities;
-using UnityEngine.UI;
 
 public class BasicEnigme : MonoBehaviour
 {
@@ -25,6 +21,7 @@ public class BasicEnigme : MonoBehaviour
    [SerializeField] private TextMeshProUGUI scoringText;
    [SerializeField] protected TextMeshProUGUI winText;
    private string rank;
+   [SerializeField] protected TextMeshProUGUI textForInteraction;
 
    public string Rank => rank;
    private int rankCoef;
@@ -67,8 +64,9 @@ public class BasicEnigme : MonoBehaviour
       enigmeActivate = true;
      TimerControl();
       
-      if (Vector3.Distance(transform.position, player.transform.position) <= rangeActivateEnigme) 
+      if (Vector3.Distance(transform.position, player.transform.position) <= rangeActivateEnigme)
       {
+         textForInteraction.text = "Press[E]";
          if (Input.GetKeyDown(KeyCode.E))
          {
             for (int i = 0; i < activatedInterface.Length; i++)
@@ -79,6 +77,10 @@ public class BasicEnigme : MonoBehaviour
             player.StopMove();
          }
             
+      }
+      else
+      {
+         textForInteraction.text = "";
       }
    }
 // met un message si l enigme d avant n ai pas fini
