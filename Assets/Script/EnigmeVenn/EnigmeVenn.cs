@@ -8,12 +8,13 @@ public class EnigmeVenn : BasicEnigme
  {
      [SerializeField] private Button[] symbole;
      [SerializeField] private EnigmeBaton enigmeBaton;
-     private int[] correctCombination = {0, 1, 2};
+     private int[] correctCombination = {1, 2, 3};
      private int[]result = {0,0,0};
      [SerializeField] private GameObject pageTwo;
      [SerializeField] private GameObject pageThree;
      [SerializeField] private GameObject pageFourth;
      [SerializeField] private GameObject mainPage;
+     [SerializeField] private GameObject pageOne;
 
      private void Start()
      {
@@ -95,24 +96,46 @@ public class EnigmeVenn : BasicEnigme
          failedText.gameObject.SetActive(false);
      }
 
-     public void goSecondPage()
+     public void GoSecondPage()
      {
+         mainPage.SetActive(false);
          pageTwo.SetActive(true);
          pageThree.SetActive(false);
          pageFourth.SetActive(false);
+         pageOne.SetActive(false);
      }
-     public void goThirdPage()
+     public void GoThirdPage()
      {
+         mainPage.SetActive(false);
          pageThree.SetActive(true);
          pageTwo.SetActive(false);
          pageFourth.SetActive(false);
+         pageOne.SetActive(false);
      }
-     public void goMainPage()
+
+     public void GoPageFourth()
+     {
+         mainPage.SetActive(false);
+         pageThree.SetActive(false);
+         pageTwo.SetActive(false);
+         pageFourth.SetActive(true);
+         pageOne.SetActive(false);
+     }
+     public void GoMainPage()
      {
          mainPage.SetActive(true);
          pageThree.SetActive(false);
          pageTwo.SetActive(false);
          pageFourth.SetActive(false);
+         pageOne.SetActive(false);
+     }
+     public void GoPageOne()
+     {
+         mainPage.SetActive(false);
+         pageThree.SetActive(false);
+         pageTwo.SetActive(false);
+         pageFourth.SetActive(false);
+         pageOne.SetActive(true);
      }
     
  }
