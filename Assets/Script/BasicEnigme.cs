@@ -10,7 +10,7 @@ public class BasicEnigme : MonoBehaviour
    [SerializeField] protected TextMeshProUGUI enonce;
    [SerializeField] protected TextMeshProUGUI titreEnigme;
    [SerializeField] private string indiceText;
-   [SerializeField] protected TextMeshProUGUI failedText;
+ 
    [SerializeField] protected TextMeshProUGUI notNowText;
    protected Vector3 notNowTextStartPos;
    private bool cantEnigme;
@@ -141,7 +141,7 @@ public class BasicEnigme : MonoBehaviour
      
    }
 // permet de fermer l interface si l on appuie sur le bouton quitte
-   public virtual void LeaveEnigme()
+   protected void LeaveEnigme()
    {
       winText.gameObject.SetActive(false);
       scoringText.gameObject.SetActive(false);
@@ -186,10 +186,10 @@ public class BasicEnigme : MonoBehaviour
             rankCoef = 4;
          }
       }
-      else
+      else if(usedHelp && timer < secondeForBRank )
       {
-         rank = "C";
-         rankCoef = 4;
+         rank = "B";
+         rankCoef = 3;
       }
      
       winText.text = "Bravo,vous avez réussi l'enigme en " + timerString + " \nVoici votre note: " +
@@ -201,6 +201,9 @@ public class BasicEnigme : MonoBehaviour
       if (enigmeActivate)
       {
          helpText.gameObject.SetActive(true);
+         StopCoroutine(nameof(IndiceDisable));
+         StartCoroutine(nameof(IndiceDisable));
+         
       
          if (Timer > secondeForARank )
          {
@@ -213,6 +216,12 @@ public class BasicEnigme : MonoBehaviour
          }
       }
      
+   }
+
+   IEnumerator IndiceDisable()
+   {
+      yield return new WaitForSeconds(4f);
+      helpText.gameObject.SetActive(false);
    }
 // controle l affichage du timer format etc
    void TimerControl()

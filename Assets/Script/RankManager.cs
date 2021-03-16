@@ -51,19 +51,19 @@ public class RankManager : MonoBehaviour
                 ((eb.Timer * eb.RankCoef)+ (ev.Timer * ev.RankCoef)+ (ec.Timer * ec.RankCoef) + (ecm.Timer * ecm.RankCoef)) /
                 (eb.RankCoef + ev.RankCoef + ec.RankCoef + ecm.RankCoef);
 
-            if (finalRankWithCoef <= 15*60)
+            if (finalRankWithCoef <= 5*60)
             {
                 finalstringRank = "S";
             }
-            if (finalRankWithCoef> 15*60 && finalRankWithCoef <=20 *60)
+            if (finalRankWithCoef> 5*60 && finalRankWithCoef <=8 *60)
             {
                 finalstringRank = "A";
             }
-            if (finalRankWithCoef > 20*60 && finalRankWithCoef <=25*60)
+            if (finalRankWithCoef > 8*60 && finalRankWithCoef <=10*60)
             {
                 finalstringRank = "B";
             }
-            if (finalRankWithCoef > 25*60)
+            if (finalRankWithCoef > 10*60)
             {
                 finalstringRank = "C";
             }

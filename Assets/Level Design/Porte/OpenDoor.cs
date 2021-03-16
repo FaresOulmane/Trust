@@ -7,15 +7,20 @@ public class OpenDoor : MonoBehaviour
 {
     private Animator animator; 
     [SerializeField] private GameObject doorBox;
+   private AudioSource _audioSource;
+  
     void Awake()
     {
+       
         animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerStay(Collider col)
     {
         if (col.CompareTag("Player"))
         {
+           
             doorBox.transform.localPosition = new Vector3(0.5f,0,0.5f);
             doorBox.transform.localRotation = Quaternion.Euler(0,90,0);
             animator.SetBool("Open",true);
@@ -23,6 +28,13 @@ public class OpenDoor : MonoBehaviour
          
         }
     }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        
+        _audioSource.Play();
+    }
+
     private void OnTriggerExit(Collider col)
     {
         if (col.CompareTag("Player"))

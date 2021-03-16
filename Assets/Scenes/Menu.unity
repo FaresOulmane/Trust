@@ -1317,7 +1317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &315202625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2856,10 +2856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6468865a03be94988fec0856f09fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  master: {fileID: 24100000, guid: 42fa70b980effb74db2c7805a4d67181, type: 2}
-  sfx: {fileID: 0}
-  sfxSlider: {fileID: 1108437552}
-  masterSlider: {fileID: 1603767381}
 --- !u!4 &651295348
 Transform:
   m_ObjectHideFlags: 0

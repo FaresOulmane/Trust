@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class EnigmeCarreMagique : BasicEnigme
@@ -19,6 +20,7 @@ public class EnigmeCarreMagique : BasicEnigme
     void Update()
     {
         StartEnigme();
+        Confirm();
         if (EndEnigme)
         {
             outline.enabled = false;
@@ -34,7 +36,7 @@ public class EnigmeCarreMagique : BasicEnigme
             plaque[i].transform.position = plaque[i].StartedPos;
         }
 
-        failedText.gameObject.SetActive(false);
+      
     }
     // override de startEnigme afin d'afficher l interface de l enigme seulement si l enigme d avant est fini et si c est le cas le texte devient celui de l enigme actuel
     protected override void StartEnigme()
@@ -64,20 +66,14 @@ public class EnigmeCarreMagique : BasicEnigme
        )
        {
            StartCoroutine(AnimCoffre());
-           failedText.gameObject.SetActive(false);
+          
            winText.gameObject.SetActive(true);
-           StopCoroutine(nameof(LeaveEnigmeAfterWin));
+           
            StartCoroutine(nameof(LeaveEnigmeAfterWin));
        }
-       else
-           failedText.gameObject.SetActive(true);
+      
    }
-
-   public override void LeaveEnigme()
-   {
-       base.LeaveEnigme();
-       failedText.gameObject.SetActive(false);
-   }
+   
    IEnumerator AnimCoffre()
    {
        yield return new WaitForSeconds(3f);

@@ -24,8 +24,9 @@ public class EnigmeVenn : BasicEnigme
 
      void Update()
      {
-       
+         Confirm();
          StartEnigme();
+         
          if (EndEnigme)
          {
              outline.enabled = false;
@@ -52,13 +53,8 @@ public class EnigmeVenn : BasicEnigme
              result[2] == correctCombination[2])
          {
              winText.gameObject.SetActive(true);
-             failedText.gameObject.SetActive(false);
-             StopCoroutine(nameof(LeaveEnigmeAfterWin));
+           
              StartCoroutine(nameof(LeaveEnigmeAfterWin));
-         }
-         else
-         {
-             failedText.gameObject.SetActive(true);
          }
      }
 // remet les symbole en interractable
@@ -69,7 +65,7 @@ public class EnigmeVenn : BasicEnigme
              button.interactable = true;
          }
 
-         failedText.gameObject.SetActive(false);
+        
 
          result[0] = 0;
          result[1] = 0;
@@ -89,11 +85,6 @@ public class EnigmeVenn : BasicEnigme
             CantDoEnigme();
          }
 
-     }
-     public override void LeaveEnigme()
-     {
-         base.LeaveEnigme();
-         failedText.gameObject.SetActive(false);
      }
 
      public void GoSecondPage()
