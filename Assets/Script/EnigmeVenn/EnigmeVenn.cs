@@ -10,6 +10,10 @@ public class EnigmeVenn : BasicEnigme
      [SerializeField] private EnigmeBaton enigmeBaton;
      private int[] correctCombination = {0, 1, 2};
      private int[]result = {0,0,0};
+     [SerializeField] private GameObject pageTwo;
+     [SerializeField] private GameObject pageThree;
+     [SerializeField] private GameObject pageFourth;
+     [SerializeField] private GameObject mainPage;
 
      private void Start()
      {
@@ -89,6 +93,26 @@ public class EnigmeVenn : BasicEnigme
      {
          base.LeaveEnigme();
          failedText.gameObject.SetActive(false);
+     }
+
+     public void goSecondPage()
+     {
+         pageTwo.SetActive(true);
+         pageThree.SetActive(false);
+         pageFourth.SetActive(false);
+     }
+     public void goThirdPage()
+     {
+         pageThree.SetActive(true);
+         pageTwo.SetActive(false);
+         pageFourth.SetActive(false);
+     }
+     public void goMainPage()
+     {
+         mainPage.SetActive(true);
+         pageThree.SetActive(false);
+         pageTwo.SetActive(false);
+         pageFourth.SetActive(false);
      }
     
  }

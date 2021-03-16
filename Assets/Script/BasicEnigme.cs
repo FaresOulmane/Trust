@@ -5,7 +5,7 @@ using TMPro;
 public class BasicEnigme : MonoBehaviour
 {
    [Header("UI Enigme")]
-   [SerializeField] protected GameObject panel;
+  
   
    [SerializeField] protected TextMeshProUGUI enonce;
    [SerializeField] protected TextMeshProUGUI titreEnigme;
