@@ -141,7 +141,7 @@ public class BasicEnigme : MonoBehaviour
      
    }
 // permet de fermer l interface si l on appuie sur le bouton quitte
-   protected virtual void LeaveEnigme()
+   public virtual void LeaveEnigme()
    {
       winText.gameObject.SetActive(false);
       scoringText.gameObject.SetActive(false);

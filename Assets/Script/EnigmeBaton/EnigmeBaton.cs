@@ -65,7 +65,7 @@ public class EnigmeBaton : BasicEnigme
 
      IEnumerator AnimCoffre()
      {
-         yield return new WaitForSeconds(4f);
+         yield return new WaitForSeconds(3f);
          cadenasCoffre.SetActive(false);
          coffreAnim.SetBool("open",true);
          

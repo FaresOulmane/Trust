@@ -91,7 +91,7 @@ public class EnigmeVenn : BasicEnigme
          }
 
      }
-     protected override void LeaveEnigme()
+     public override void LeaveEnigme()
      {
          base.LeaveEnigme();
          failedText.gameObject.SetActive(false);

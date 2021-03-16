@@ -8,6 +8,7 @@ public class EnigmeCarreMagique : BasicEnigme
     [SerializeField] private Plaque[] plaque;
 
     [SerializeField] private EnigmeVenn enigmeVenn;
+    [SerializeField] private Animator coffreAnim;
     
     private void Start()
     {
@@ -63,7 +64,7 @@ public class EnigmeCarreMagique : BasicEnigme
            plaqueNumber[6].Num + plaqueNumber[4].Num + plaqueNumber[2].Num == 15
        )
        {
-           Debug.Log("gg");
+           StartCoroutine(AnimCoffre());
            failedText.gameObject.SetActive(false);
            winText.gameObject.SetActive(true);
            StopCoroutine(nameof(LeaveEnigmeAfterWin));
@@ -73,10 +74,16 @@ public class EnigmeCarreMagique : BasicEnigme
            failedText.gameObject.SetActive(true);
    }
 
-   protected override void LeaveEnigme()
+   public override void LeaveEnigme()
    {
        base.LeaveEnigme();
        failedText.gameObject.SetActive(false);
+   }
+   IEnumerator AnimCoffre()
+   {
+       yield return new WaitForSeconds(3f);
+       coffreAnim.SetBool("open",true);
+         
    }
    
 }
