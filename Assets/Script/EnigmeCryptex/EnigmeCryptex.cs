@@ -10,7 +10,12 @@ public class EnigmeCryptex : BasicEnigme
     private int[] correctCombination;
 
     [SerializeField] private EnigmeCarreMagique carreMagique;
-    
+    private AudioSource _audioSource;
+
+    void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
         result = new int[] {0, 0, 0, 0,0,0,0};
@@ -82,8 +87,10 @@ public class EnigmeCryptex : BasicEnigme
         {
             winText.gameObject.SetActive(true);
             animator.SetBool("unlock", true);
+            _audioSource.Play();
             StopCoroutine(nameof(LeaveEnigmeAfterWin));
             StartCoroutine(nameof(LeaveEnigmeAfterWin));
+            
            
         }
 
