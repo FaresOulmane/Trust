@@ -10,7 +10,7 @@ public class MainEasterEgg : MonoBehaviour
 {
     private bool interactable = false;
     private CharacterController player;
-    [SerializeField] private float rangeActivateEnigme;
+  
     [SerializeField] private GameObject panel;
     [SerializeField] private TextMeshProUGUI[] bonneLettre;
     [SerializeField] private GameObject[] pendaison;
@@ -19,7 +19,7 @@ public class MainEasterEgg : MonoBehaviour
     [SerializeField] private GameObject[] fullPendaison;
     [SerializeField] private GameObject[] endOfEasterEgg;
     [SerializeField] private TextMeshProUGUI lettreEnonce;
-    [SerializeField]  private List<string> lettre;
+    private List<string> lettre;
     private float timer = 3f;
     private float secondTimer = 6f;
     private bool endEvent = false;

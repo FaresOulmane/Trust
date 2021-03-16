@@ -48,6 +48,7 @@ public class BasicEnigme : MonoBehaviour
   
 
    private bool endEnigme;
+   [SerializeField] protected Outline outline;
 
    public bool EndEnigme
    {
@@ -70,6 +71,7 @@ public class BasicEnigme : MonoBehaviour
       
       if (Vector3.Distance(transform.position, player.transform.position) <= rangeActivateEnigme)
       {
+         outline.GetComponent<Outline>().enabled = true;
          textForInteraction.text = "Press[E]";
          if (Input.GetKeyDown(KeyCode.E))
          {
@@ -84,6 +86,7 @@ public class BasicEnigme : MonoBehaviour
       }
       else
       {
+         outline.GetComponent<Outline>().enabled = false;
          textForInteraction.text = "";
       }
    }
@@ -93,6 +96,7 @@ public class BasicEnigme : MonoBehaviour
    {
       if (Vector3.Distance(transform.position, player.transform.position) <= rangeActivateEnigme)
       {
+         outline.GetComponent<Outline>().enabled = true;
          if (Input.GetKeyDown(KeyCode.E))
          {
             cantEnigme = true;
@@ -100,6 +104,10 @@ public class BasicEnigme : MonoBehaviour
             StopCoroutine(nameof(StopMessage));
             StartCoroutine(nameof(StopMessage));
          }
+      }
+      else
+      {
+         outline.GetComponent<Outline>().enabled = false;
       }
 
       if (cantEnigme)
@@ -130,6 +138,7 @@ public class BasicEnigme : MonoBehaviour
       winText.gameObject.SetActive(false);
       player.MoveAgain();
       EndEnigme = true;
+     
    }
 // permet de fermer l interface si l on appuie sur le bouton quitte
    protected virtual void LeaveEnigme()

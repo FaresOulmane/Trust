@@ -20,6 +20,7 @@ public class EnigmeCarreMagique : BasicEnigme
         StartEnigme();
         if (EndEnigme)
         {
+            outline.enabled = false;
             GetComponent<EnigmeCarreMagique>().enabled = false;
         }
        

@@ -28,6 +28,7 @@ public class EnigmeVenn : BasicEnigme
          StartEnigme();
          if (EndEnigme)
          {
+             outline.enabled = false;
              GetComponent<EnigmeVenn>().enabled = false;
          }
          

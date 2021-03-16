@@ -29,6 +29,7 @@ public class EnigmeBaton : BasicEnigme
        if (EndEnigme)
        {
            enigmeActivate = false;
+           outline.enabled = false;
            GetComponent<EnigmeBaton>().enabled = false;
        }
     }

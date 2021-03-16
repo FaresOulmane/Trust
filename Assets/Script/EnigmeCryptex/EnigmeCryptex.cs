@@ -26,6 +26,7 @@ public class EnigmeCryptex : BasicEnigme
         StartEnigme();
         if (EndEnigme)
         {
+            outline.enabled = false;
             GetComponent<EnigmeCryptex>().enabled = false;
         }
     }
