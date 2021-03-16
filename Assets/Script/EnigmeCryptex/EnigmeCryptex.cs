@@ -35,8 +35,7 @@ public class EnigmeCryptex : BasicEnigme
     {
         if (carreMagique.EndEnigme)
         {
-            enonce.text = "Entrez le mot que vous avez trouver pour ouvrir le cryptex";
-            titreEnigme.text = "Enigme 4 : Cryptex";
+           
             base.StartEnigme();
         }
         else

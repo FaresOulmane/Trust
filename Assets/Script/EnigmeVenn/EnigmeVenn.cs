@@ -81,8 +81,7 @@ public class EnigmeVenn : BasicEnigme
      {
          if (enigmeBaton.EndEnigme)
          {
-             enonce.text = "Appuyez sur les bons symbole";
-             titreEnigme.text = "Enigme 2 : Diagramme de Venn";
+           
             base.StartEnigme();
          }
          else

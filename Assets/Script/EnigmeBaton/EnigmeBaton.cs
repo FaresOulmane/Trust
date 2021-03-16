@@ -14,8 +14,7 @@ public class EnigmeBaton : BasicEnigme
     
    public void Start()
    {
-       enonce.text = "Ouvrez le cadenas à l'aide du code que vous avez trouvez";
-        titreEnigme.text = "Enigme 1 : Batons";
+       
         result = new int[] {0, 0, 0, 0};
         correctCombination = new int[]{3,6,6,5};
         LockRotate.Rotated += CheckResults;

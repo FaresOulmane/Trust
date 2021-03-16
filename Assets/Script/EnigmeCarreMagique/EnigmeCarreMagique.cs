@@ -41,8 +41,7 @@ public class EnigmeCarreMagique : BasicEnigme
     {
         if (enigmeVenn.EndEnigme)
         {
-            enonce.text = "Placez les plaque de sorte que chaque ligne verticel/diagonal/horizontal soit egale lorsque l'on additionne tout les chiffres d'une ligne";
-            titreEnigme.text = "Enigme 3 : Carre Magique";
+           
             base.StartEnigme();
         }
         else
