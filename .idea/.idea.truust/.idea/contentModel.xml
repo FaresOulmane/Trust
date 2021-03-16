@@ -60,6 +60,9 @@
         <e p="SkySerie Freebie" t="Include">
           <e p="Hdri setup.txt" t="Include" />
         </e>
+        <e p="Sound design" t="Include">
+          <e p="SoundSetting.cs" t="Include" />
+        </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
             <e p="LiberationSans - OFL.txt" t="Include" />

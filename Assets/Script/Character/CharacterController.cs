@@ -20,7 +20,10 @@ public class CharacterController : MonoBehaviour
       private bool canMove;
       private bool isMoving;
       private bool onEnigme;
-    
+      [SerializeField] private AudioClip walkSound;
+      // [SerializeField] private AudioClip runSound;
+      [SerializeField] private AudioSource audioSource;
+      
       public bool OnEnigme => onEnigme;
       
         private Animator animator;
@@ -30,7 +33,8 @@ public class CharacterController : MonoBehaviour
         private RectTransform interactRect;
 
         private void Awake()
-      {
+        {
+          
           animator = GetComponent<Animator>();
           canMove = true;
            speed = walkSpeed;
@@ -78,11 +82,16 @@ public class CharacterController : MonoBehaviour
                if (speed <= walkSpeed + 1)
                {
                    animator.SetBool("marche",true);
+                   // audioSource.Stop();
+                   audioSource.PlayOneShot(walkSound);
                    animator.SetBool("run",false); 
                }
 
                else
                {
+                   // audioSource.Stop();
+                   // audioSource.PlayOneShot(runSound);
+                   // audioSource.Play();
                   animator.SetBool("run",true); 
                }
            }
@@ -90,6 +99,9 @@ public class CharacterController : MonoBehaviour
            {
               
                isMoving = false;
+               
+               // audioSource.Stop();
+               // audioSource.Stop();
                animator.SetBool("marche",false); 
                animator.SetBool("run",false); 
              
