@@ -11,12 +11,7 @@ public class EnigmeBaton : BasicEnigme
     [SerializeField] private Animator coffreAnim;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject cadenasCoffre;
-    private AudioSource _audioSource;
-
-    void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
+    
    public void Start()
    {
        
@@ -72,7 +67,6 @@ public class EnigmeBaton : BasicEnigme
          yield return new WaitForSeconds(3f);
          cadenasCoffre.SetActive(false);
          coffreAnim.SetBool("open",true);
-         _audioSource.Play();
          
      }
 

@@ -10,13 +10,7 @@ public class EnigmeCarreMagique : BasicEnigme
 
     [SerializeField] private EnigmeVenn enigmeVenn;
     [SerializeField] private Animator coffreAnim;
-    private AudioSource _audioSource;
-  
-
-    void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
+    
     private void Start()
     {
         notNowTextStartPos = notNowText.gameObject.GetComponent<Transform>().position;
@@ -84,7 +78,6 @@ public class EnigmeCarreMagique : BasicEnigme
    {
        yield return new WaitForSeconds(3f);
        coffreAnim.SetBool("open",true);
-       _audioSource.Play();
          
    }
    
