@@ -21,7 +21,7 @@ public class MainEasterEgg : MonoBehaviour
     [SerializeField] private TextMeshProUGUI lettreEnonce;
     private List<string> lettre;
     private float timer = 3f;
-    private float secondTimer = 6f;
+    private float secondTimer = 10f;
     private bool endEvent = false;
     private int[] winLetter;
     private bool stopPressKey = false;

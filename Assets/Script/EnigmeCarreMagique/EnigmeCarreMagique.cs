@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class EnigmeCarreMagique : BasicEnigme
@@ -10,9 +9,12 @@ public class EnigmeCarreMagique : BasicEnigme
 
     [SerializeField] private EnigmeVenn enigmeVenn;
     [SerializeField] private Animator coffreAnim;
+    AudioSource audioSource;
+    
     
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         notNowTextStartPos = notNowText.gameObject.GetComponent<Transform>().position;
         notNowTextStartPos = notNowText.gameObject.transform.position;
     }
@@ -65,19 +67,21 @@ public class EnigmeCarreMagique : BasicEnigme
            plaqueNumber[6].Num + plaqueNumber[4].Num + plaqueNumber[2].Num == 15
        )
        {
-           StartCoroutine(AnimCoffre());
+         
           
            winText.gameObject.SetActive(true);
-           
+           audioSource.Play();
            StartCoroutine(nameof(LeaveEnigmeAfterWin));
+           StartCoroutine(nameof(AnimCoffre));
        }
       
    }
    
    IEnumerator AnimCoffre()
    {
-       yield return new WaitForSeconds(3f);
+       yield return new WaitForSeconds(3.5f);
        coffreAnim.SetBool("open",true);
+       
          
    }
    

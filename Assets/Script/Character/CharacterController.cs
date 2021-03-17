@@ -18,12 +18,29 @@ public class CharacterController : MonoBehaviour
       [SerializeField] private Transform cam;
       private float playerYVelocity;
       private bool canMove;
+
+      public bool CanMove
+      {
+          get => canMove;
+          set => canMove = value;
+      }
+
       private bool isMoving;
       private bool onEnigme;
+      AudioSource audioSource;
+      [SerializeField] private AudioClip walkSound;
+      [SerializeField] private AudioClip runSound;
+      private float walkSoundTimer;
+      private float runSoundTimer;
 
-      public bool OnEnigme => onEnigme;
-      
-        private Animator animator;
+
+      public bool OnEnigme
+      {
+          get => onEnigme;
+          set => onEnigme = value;
+      }
+
+      private Animator animator;
         
         [SerializeField] private TextMeshProUGUI textInteract;
         private Transform camTr;
@@ -31,7 +48,8 @@ public class CharacterController : MonoBehaviour
 
         private void Awake()
         {
-          
+            onEnigme = false;
+            audioSource = GetComponent<AudioSource>();
           animator = GetComponent<Animator>();
           canMove = true;
            speed = walkSpeed;
@@ -48,6 +66,7 @@ public class CharacterController : MonoBehaviour
 
       private void Update()
        {
+          
            PlayerMove();
          
           interactRect.rotation = camTr.rotation;
@@ -78,12 +97,24 @@ public class CharacterController : MonoBehaviour
                
                if (speed <= walkSpeed + 1)
                {
+                   walkSoundTimer += Time.deltaTime;
+                   if (walkSoundTimer >= 0.8f)
+                   {
+                       audioSource.PlayOneShot(walkSound);
+                       walkSoundTimer = 0;
+                   }
                    animator.SetBool("marche",true);
                    animator.SetBool("run",false); 
                }
 
                else
                {
+                   runSoundTimer += Time.deltaTime;
+                   if (runSoundTimer >= 0.6f)
+                   {
+                       audioSource.PlayOneShot(runSound);
+                       runSoundTimer = 0;
+                   }
                    animator.SetBool("run",true); 
                }
            }
@@ -101,6 +132,8 @@ public class CharacterController : MonoBehaviour
            else
                speed = Mathf.Lerp(speed, walkSpeed, Time.deltaTime * timeToRun);
        }
+       
+       
 // freeze le perso et la camera
        public void StopMove()
        {

@@ -45,6 +45,7 @@ public class RankManager : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
             player.StopMove();
+            player.OnEnigme = true;
             finalRank.gameObject.SetActive(true);
            
             float finalRankWithCoef =

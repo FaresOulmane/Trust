@@ -128,6 +128,7 @@ public class BasicEnigme : MonoBehaviour
    protected IEnumerator LeaveEnigmeAfterWin()
    {
       CalculateRank();
+      
          yield return new WaitForSeconds(3f);
       for (int i = 0; i < activatedInterface.Length; i++)
       {
@@ -141,7 +142,7 @@ public class BasicEnigme : MonoBehaviour
      
    }
 // permet de fermer l interface si l on appuie sur le bouton quitte
-   protected void LeaveEnigme()
+   public virtual void LeaveEnigme()
    {
       winText.gameObject.SetActive(false);
       scoringText.gameObject.SetActive(false);
@@ -205,7 +206,7 @@ public class BasicEnigme : MonoBehaviour
          StartCoroutine(nameof(IndiceDisable));
          
       
-         if (Timer > secondeForARank )
+         if (timer > secondeForARank )
          {
             helpText.text = indiceText;
             usedHelp = true;

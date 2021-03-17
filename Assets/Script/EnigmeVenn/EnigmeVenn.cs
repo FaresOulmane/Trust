@@ -15,6 +15,7 @@ public class EnigmeVenn : BasicEnigme
      [SerializeField] private GameObject pageFourth;
      [SerializeField] private GameObject mainPage;
      [SerializeField] private GameObject pageOne;
+     [SerializeField] private GameObject btnIndice;
 
      private void Start()
      {
@@ -89,6 +90,9 @@ public class EnigmeVenn : BasicEnigme
 
      public void GoSecondPage()
      {
+         titreEnigme.gameObject.SetActive(false);
+         btnIndice.SetActive(false);
+         
          mainPage.SetActive(false);
          pageTwo.SetActive(true);
          pageThree.SetActive(false);
@@ -97,6 +101,8 @@ public class EnigmeVenn : BasicEnigme
      }
      public void GoThirdPage()
      {
+         titreEnigme.gameObject.SetActive(false);
+         btnIndice.SetActive(false);
          mainPage.SetActive(false);
          pageThree.SetActive(true);
          pageTwo.SetActive(false);
@@ -106,6 +112,8 @@ public class EnigmeVenn : BasicEnigme
 
      public void GoPageFourth()
      {
+         titreEnigme.gameObject.SetActive(false);
+         btnIndice.SetActive(false);
          mainPage.SetActive(false);
          pageThree.SetActive(false);
          pageTwo.SetActive(false);
@@ -114,6 +122,8 @@ public class EnigmeVenn : BasicEnigme
      }
      public void GoMainPage()
      {
+         titreEnigme.gameObject.SetActive(true);
+         btnIndice.SetActive(true);
          mainPage.SetActive(true);
          pageThree.SetActive(false);
          pageTwo.SetActive(false);
@@ -122,11 +132,25 @@ public class EnigmeVenn : BasicEnigme
      }
      public void GoPageOne()
      {
+         titreEnigme.gameObject.SetActive(false);
+         btnIndice.SetActive(false);
          mainPage.SetActive(false);
          pageThree.SetActive(false);
          pageTwo.SetActive(false);
          pageFourth.SetActive(false);
          pageOne.SetActive(true);
      }
-    
+
+     public override void LeaveEnigme()
+     {
+         base.LeaveEnigme();
+         titreEnigme.gameObject.SetActive(false);
+         btnIndice.SetActive(false);
+         mainPage.SetActive(false);
+         pageThree.SetActive(false);
+         pageTwo.SetActive(false);
+         pageFourth.SetActive(false);
+         pageOne.SetActive(false);
+         
+     }
  }

@@ -11,10 +11,13 @@ public class EnigmeBaton : BasicEnigme
     [SerializeField] private Animator coffreAnim;
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject cadenasCoffre;
+    AudioSource audioSource;
+
+  
     
    public void Start()
    {
-       
+       audioSource = GetComponent<AudioSource>();
         result = new int[] {0, 0, 0, 0};
         correctCombination = new int[]{3,6,6,5};
         LockRotate.Rotated += CheckResults;
@@ -56,6 +59,7 @@ public class EnigmeBaton : BasicEnigme
          {
              winText.gameObject.SetActive(true);
              animator.SetBool("unlock", true);
+             audioSource.Play();
              StopCoroutine(nameof(LeaveEnigmeAfterWin));
              StartCoroutine(nameof(LeaveEnigmeAfterWin));
              StartCoroutine(AnimCoffre());
@@ -67,6 +71,7 @@ public class EnigmeBaton : BasicEnigme
          yield return new WaitForSeconds(3f);
          cadenasCoffre.SetActive(false);
          coffreAnim.SetBool("open",true);
+        
          
      }
 

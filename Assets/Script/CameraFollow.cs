@@ -36,7 +36,7 @@ public class CameraFollow : MonoBehaviour {
 	void Update () 
 	{
 
-		if (Input.GetMouseButton(0)&&!player.OnEnigme)
+		if (!player.OnEnigme&&player.CanMove && Input.GetMouseButton(0))
 		{
 			mouseX = Input.GetAxisRaw("Mouse X");
 			mouseY = Input.GetAxisRaw ("Mouse Y");
